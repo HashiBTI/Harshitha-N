@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .weather-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #fff;
+      color: #333;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #f1f1f1;
+    }
+
+    .weather-info {
+      margin-top: 20px;
+    }
+
+    .temp {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .desc {
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      margin-top: 5px;
+    }
+
+    .icon {
+      width: 80px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-container">
+    <h1>🌤️ Weather App</h1>
+    <input type="text" id="cityInput" placeholder="Enter city name" />
+    <button onclick="getWeather()">Search</button>
+
+    <div class="weather-info" id="weatherInfo"></div>
+  </div>
+
+  <script>
+    const apiKey = "YOUR_API_KEY"; // 🔑 Replace with your OpenWeatherMap API key
+
+    async function getWeather() {
+      const city = document.getElementById('cityInput').value.trim();
+      if (city === "") {
+        alert("Please enter a city name!");
+        return;
+      }
+
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.cod === "404") {
+          document.getElementById('weatherInfo').innerHTML = `<p>❌ City not found!</p>`;
+          return;
+        }
+
+        const weatherInfo = `
+          <h2>${data.name}, ${data.sys.country}</h2>
+          <img class="icon" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Weather icon">
+          <div class="temp">${Math.round(data.main.temp)}°C</div>
+          <div class="desc">${data.weather[0].description}</div>
+          <p>Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} m/s</p>
+        `;
+
+        document.getElementById('weatherInfo').innerHTML = weatherInfo;
+      } catch (error) {
+        document.getElementById('weatherInfo').innerHTML = `<p>⚠️ Error fetching data!</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
