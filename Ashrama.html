@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanjeevini Datta Kshetra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=EB+Garamond:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    header {
+      background: linear-gradient(90deg, #6a1b9a, #8e24aa);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: linear-gradient(90deg, #ffeb3b, #ff9800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffeb3b;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      padding: 2rem;
+      margin-top: 75px; /* adjust for fixed header */
+    }
+
+    /* Background Video */
+    .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Big phone number on hero */
+    .hero-contact {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(106, 27, 154, 0.6);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      z-index: 2;
+    }
+
+    /* Bottom text */
+    .bottom-text {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      z-index: 2;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: #fff;
+      margin: 2rem auto;
+      border-radius: 15px;
+      max-width: 1200px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #6a1b9a;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Activities & Treatments */
+    .services-container {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .services-column {
+      flex: 1 1 400px;
+      background: #f3e5f5;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .services-column h2 {
+      color: #6a1b9a;
+      margin-bottom: 1rem;
+    }
+
+    .services-column ul {
+      list-style: none;
+    }
+
+    .services-column li {
+      margin: 0.5rem 0;
+      padding: 0.6rem;
+      border-radius: 6px;
+      background: #fff;
+      transition: 0.3s ease;
+    }
+
+    .services-column li:hover {
+      background: #d1c4e9;
+      transform: scale(1.03);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 1.2rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero-contact {
+        top: 15px;
+        right: 15px;
+        font-size: 1.4rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .bottom-text {
+        right: 10px;
+        font-size: 1rem;
+      }
+
+      .section {
+        margin: 1rem;
+        padding: 3rem 1rem;
+      }
+
+      .services-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Sanjeevini Datta Kshetra</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#services">Activities & Treatments</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <!-- Background video -->
+    <video autoplay muted loop playsinline class="background-video">
+      <source src="c:\Users\Admin\Desktop\WhatsApp Video 2025-10-31 at 8.35.00 PM.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-contact">📞 +91 9980764131</div>
+
+    
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+      Dr. Subramanya Reddy. Ph.D. Yoga (Science)<br>
+      Basically, a Mechanical Engineer who worked in the Aeronautical Industry for about 30 years in India and abroad, and now settled in Bangalore.
+      Got initiated into Yoga by Guruji Rishi Prabhakarji in 1995, and has been serving as a Meditation Teacher in the corporate sector as well as for the general public.
+      Completed several Diploma and Degree courses at SVYESA University, Bangalore.
+    </p>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision" class="section">
+    <h2>Our Vision</h2>
+    <p>To revive the ancient Medical Systems, which can heal suffering without the need for medicine.</p>
+  </section>
+
+  <!-- Mission Section -->
+  <section id="mission" class="section">
+    <h2>Our Mission</h2>
+    <p>Explore the implementation of Yoga and Spiritual Practices in our Modern Lifestyle.</p>
+  </section>
+
+  <!-- Activities & Treatments Section -->
+  <section id="services" class="section">
+    <div class="services-container">
+      <div class="services-column">
+        <h2>Our Activities</h2>
+        <ul>
+          <li>Yogasana</li>
+          <li>Pranayama</li>
+          <li>Transcendental Meditation</li>
+          <li>Samadhi Meditation</li>
+          <li>Shatkriyas</li>
+          <li>MSRT – Mind Sound Resonance Technique</li>
+          <li>Body Massage</li>
+          <li>Steam Therapy</li>
+          <li>Work from Retreat</li>
+          <li>Connect with Nature</li>
+          <li>Satvik Food</li>
+          <li>Gastro Intestinal Cleaning</li>
+          <li>Mud Therapy</li>
+          <li>Neem Therapy</li>
+          <li>Nature’s Voice</li>
+          <li>Music Therapy</li>
+        </ul>
+      </div>
+
+      <div class="services-column">
+        <h2>Our Treatments</h2>
+        <ul>
+          <li>Body Flexibility</li>
+          <li>Weight Loss</li>
+          <li>Diabetes</li>
+          <li>Blood Pressure</li>
+          <li>Thyroid</li>
+          <li>Gastritis</li>
+          <li>Ulcers</li>
+          <li>Heart Problems</li>
+          <li>Migraine</li>
+          <li>Sleeplessness</li>
+          <li>Varicose Veins</li>
+          <li>Joint Pains – Arthritis</li>
+          <li>PCOD / Menstrual Problems</li>
+          <li>Vertigo</li>
+          <li>Back Pain</li>
+          <li>Spondylitis</li>
+          <li>Skin Allergies</li>
+          <li>Hormonal Imbalance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="d:/sanjeevini/9.jfif" alt="exercises">
+      <img src="d:/sanjeevini/10.jfif" alt="communication">
+      <img src="d:/sanjeevini/11.jfif" alt="food">
+      <img src="d:/sanjeevini/12.jfif" alt="treatment">
+      <img src="d:/sanjeevini/13.jfif" alt="massage">
+      <img src="d:/sanjeevini/14.jfif" alt="nature">
+      <img src="d:/sanjeevini/15.jfif" alt="asana">
+      <img src="d:/sanjeevini/16.jfif" alt="pranayama">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Sanjeevini Datta Kshetra | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
